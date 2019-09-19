@@ -16,7 +16,7 @@ h1 {
 h2 {
 	font-family: Raleway;
 	text-transform: uppercase; 
-	color: #f15B31;
+	color: #F15B31;
 	letter-spacing: 1px;
 	font-weight: 600;
 	font-size: 18px,
@@ -24,7 +24,7 @@ h2 {
 
 h3 {
 	font-family: Raleway;
-	color: #0D2C40;
+	color: #00A6B3;
 	letter-spacing: 1px;
 	font-weight: 600;
 	font-size: 20px,
@@ -85,7 +85,7 @@ footer {
 
 .caption {
 	float: center;
-	margin: 0;
+	margin: -30px;
 	text-align: center;
 
 }
@@ -110,4 +110,20 @@ footer {
 .name {
 	color: #F15B31;
 	font-weight: 700;
+}
+
+.restartButton {
+  background-color: #00A6B3;
+  color: white;
+  border-radius: 80px;
+  padding: 10px;
+  text-align: center;
+  margin: 20px 60px 100px 60px;
+  cursor: pointer;
+}
+.restartButton:hover {
+	border-color: #FFFFFF;
+	text-transform: uppercase;
+	text-decoration: underline;
+	background-color: #F15B31;
 }

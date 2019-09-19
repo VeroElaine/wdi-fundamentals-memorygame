@@ -2,8 +2,26 @@ const cards = [
 {
 	rank:"Queen",
 	suit:"Hearts",
+	cardImage:"images/queen-of-hearts.png",
+},
+{
+	rank:"Queen",
+	suit:"Diamonds",
+	cardImage:"images/queen-of-diamonds.png",
+},
+{
+	rank:"King",
+	suit:"Hearts",
+	cardImage:"images/king-of-hearts.png",
+},
+{
+	rank:"King",
+	suit:"Diamonds",
+	cardImage:"images/king-of-diamonds.png",
+},
+{	rank:"Queen",
+	suit:"Hearts",
 	cardImage:"images/queen-of-hearts.png"
-,
 },
 {
 	rank:"Queen",
@@ -21,22 +39,54 @@ const cards = [
 	cardImage:"images/king-of-diamonds.png",
 },
 ];
-const cardsInPlay = [];
-function checkForMatch() {
-		if (cardsInPlay[0] === cardsInPlay[1]) {
-			console.log("You found a match of" + " " + cardsInPlay[1] + "s!");
-		} else {
-			console.log("Sorry, try again.");
-		}
-}
-function flipCard(cardId) {
+let cardsInPlay = [];
+
+function createBoard() {
+	for (var i = 0; i < cards.length; i++) {
+		var cardElement = document.createElement('img');
+		cardElement.setAttribute('src', "images/back.png");
+		cardElement.setAttribute('data-id', i);
+		cardElement.addEventListener('click', flipCard);
+		document.getElementById('game-board').appendChild(cardElement);
+
+	}
+};
+
+function flipCard() {
+	var cardId = this.getAttribute("data-id");
 	console.log("User flipped" + " " + cards[cardId].rank);
 	cardsInPlay.push(cards[cardId].rank);
 	console.log(cards[cardId].cardImage);
 	console.log(cards[cardId].suit);
-	if (cardsInPlay.length === 2) {
-	checkForMatch();
+	this.setAttribute('src', cards[cardId].cardImage);
+	if (cardsInPlay.length === 2 || cardsInPlay.length === 4 || cardsInPlay.length === 6 || cardsInPlay.length === 8) {
+		checkForMatch();
 	}
-}
-flipCard(0);
-flipCard(2);
+
+};
+//global variable for points
+var points = 1
+
+function checkForMatch() {
+		if (cardsInPlay[cardsInPlay.length-1] === cardsInPlay[cardsInPlay.length-2]) {
+			alert("You found a match of" + " " + cardsInPlay[cardsInPlay.length-1] + "s!" + '\n' + "You have" + " " + points++ + " " + "matches");
+		} else {
+			alert("Sorry, try again.");
+		} 
+//think about pop here
+};
+
+function gameRestart() {
+	for (var i = 0; i < cards.length; i++) {
+		var restart = document.getElementById('game-board');
+		var children = restart.childNodes;
+		restart.removeChild(restart.firstChild);
+
+} createBoard();
+};
+
+	restartButton = document.getElementById("restartButton");
+	restartButton.addEventListener("click", gameRestart);
+	createBoard();
+	
+
