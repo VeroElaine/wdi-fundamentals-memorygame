@@ -59,7 +59,7 @@ function flipCard() {
 	console.log(cards[cardId].cardImage);
 	console.log(cards[cardId].suit);
 	this.setAttribute('src', cards[cardId].cardImage);
-	if (cardsInPlay.length === 2 || cardsInPlay.length === 4 || cardsInPlay.length === 6 || cardsInPlay.length === 8) {
+	if (cardsInPlay.length %2 === 0) {
 		checkForMatch();
 	}
 
@@ -81,6 +81,7 @@ function gameRestart() {
 		var restart = document.getElementById('game-board');
 		var children = restart.childNodes;
 		restart.removeChild(restart.firstChild);
+		points = 1;
 
 } createBoard();
 };
