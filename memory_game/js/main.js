@@ -48,11 +48,11 @@ function createBoard() {
 		cardElement.setAttribute('data-id', i);
 		cardElement.addEventListener('click', flipCard);
 		document.getElementById('game-board').appendChild(cardElement);
-
 	}
 };
 
 function flipCard() {
+	flippedCard.push(this);
 	var cardId = this.getAttribute("data-id");
 	console.log("User flipped" + " " + cards[cardId].rank);
 	cardsInPlay.push(cards[cardId].rank);
@@ -62,19 +62,30 @@ function flipCard() {
 	if (cardsInPlay.length %2 === 0) {
 		checkForMatch();
 	}
-
 };
-//global variable for points
+let flippedCard = []
+
 var points = 1
 
 function checkForMatch() {
 		if (cardsInPlay[cardsInPlay.length-1] === cardsInPlay[cardsInPlay.length-2]) {
-			alert("You found a match of" + " " + cardsInPlay[cardsInPlay.length-1] + "s!" + '\n' + "You have" + " " + points++ + " " + "matches");
+			alert("You found a match of" + " " + cardsInPlay[cardsInPlay.length-1] + "s!" + '\n' + "You have" + " " + points++ + " " + "matches")
+			match();
 		} else {
 			alert("Sorry, try again.");
+			noMatch();
 		} 
-//think about pop here
 };
+
+function match() {
+	flippedCard[flippedCard.length-1].setAttribute('src', "images/blank-card.png");
+	flippedCard[flippedCard.length-2].setAttribute('src', "images/blank-card.png");
+}
+
+function noMatch() {
+	flippedCard[flippedCard.length-1].setAttribute('src', "images/back.png");
+	flippedCard[flippedCard.length-2].setAttribute('src', "images/back.png");
+}
 
 function gameRestart() {
 	for (var i = 0; i < cards.length; i++) {
